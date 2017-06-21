@@ -5,14 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Vue</title>
+  <link rel="stylesheet" href="style/css/style.css">
+  <script src="node_modules/vue/dist/vue.js"></script>
 </head>
 <body>
-  <section id="app">
-    <h1>Titre</h1>
-    <p></p>
+
+  <section class="app" id="app">
+    <h1>{{ titre }}</h1>
+    <p>{{ message }}</p>
   </section>
 
-  <script src="node_modules/vue/dist/vue.min.js"></script>
+  <section class="app" id="app2">
+    <!-- On utilise une directive de vue. Elles commencent toujours par "v-" -->
+    <p v-bind:title="message">Texte défaut</p>
+  </section>
+
+  <section class="app" id="app3">
+    <!-- Pour que le bouton soit fonctionnel, il doit se trouver dans app3 (à l'intérieur du 'scope') -->
+    <button v-on:click="seen = !seen">Show</button>
+    <!-- Transition avec vue -->
+    <transition name="fade">
+      <p v-if="seen">{{ message }}</p>
+    </transition>
+  </section>
+
+  <section class="app" id="app4">
+    <h1>Todos Liste</h1>
+    <ul>
+      <li v-for="todo in todos">A {{ todo.time }} : {{ todo.text }}</li>
+    </ul>
+  </section>
+
   <script src="script/app.js"></script>
 </body>
 </html>
