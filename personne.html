@@ -5,19 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Personne</title>
+  <link rel="stylesheet" href="style/css/listing.css">
   <script src="node_modules/vue/dist/vue.js"></script>
 </head>
 <body>
 
-  <main id="single">
+  <div id="listing">
 
-  </main>
+    <transition name="bounce">
+    <main v-if="show" id="single">
+        <h1>Fiche</h1>
+        <h2>{{ the_personne.prenom }} {{ the_personne.nom }}</h2>
+        <p class="ddn">Né le {{ the_personne.ddn }}</p>
+        <dl>
+          <div>
+            <dt class="info">Email :</dt>
+            <dd class="info-value">{{ the_personne.email }}</dd>
+          </div>
+          <div>
+            <dt class="info">Tél. :</dt>
+            <dd class="info-value">{{ the_personne.telephone }}</dd>
+          </div>
+        </dl>
+    </main>
+    </transition>
 
-  <aside id="listing">
-    <ul>
-      <li></li>
-    </ul>
-  </aside>
+    <aside id="list">
+      <ul>
+        <li v-for="item in personnesL">
+          <a href="#" v-on:click="getSingle" v-bind:data-idp="item.id_personnes">{{ item.nom }} {{ item.prenom }}</a>
+        </li>
+      </ul>
+    </aside>
+
+  </div>
 
   <script src="script/personne.js"></script>
 </body>

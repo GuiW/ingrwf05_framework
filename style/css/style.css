@@ -8,7 +8,8 @@ body {
 
 .app {
   padding: 10px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  box-shadow: 2px 4px 4px rgba(33, 33, 33, 0.4); }
 
 #app {
   background: #ECECEC; }
@@ -22,6 +23,9 @@ body {
 
 #app4 {
   background: #EEEEEE; }
+
+#app5 {
+  background: #BDC3C7; }
 
 button {
   border: none;
