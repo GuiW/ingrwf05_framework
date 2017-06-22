@@ -2,10 +2,20 @@ var appListing = new Vue(
   {
     el: "#listing",
     data: {
-      showList: false,
+      showSingle: false,
       showForm: false,
       personnesL: {},
-      the_personne: {}
+      the_personne: {},
+      form: {
+        nom: "",
+        prenom: "",
+        email: "",
+        telephone: "",
+        ddn: "",
+        genre: "",
+        insert_personne: "",
+        id_personnes: ""
+      }
     },
     mounted : function(){//mounted : l'application est prête à fonctionner
       this.getRequestAjax();//Avec this, on appelle l'objet appListing
@@ -33,14 +43,15 @@ var appListing = new Vue(
         
         let xhr = new XMLHttpRequest();
         let self = this;
-        this.showList = false;
+        this.showSingle = false;
 
         xhr.open('GET', 'listing.php?ajax&id_personnes='+ idp +'', true);
         xhr.onreadystatechange = function() {
           if(xhr.readyState == 4 && xhr.status == 200) {
             personne = JSON.parse(xhr.responseText);
             self.the_personne = personne;
-            self.showList = true;
+            self.showForm = false;
+            self.showSingle = true;
             //console.log(self.the_personne);
           }
         }
@@ -48,39 +59,35 @@ var appListing = new Vue(
       },
 
       onSubmit : function(){
-        myFields = document.querySelectorAll("input");
-        myDatas = [];
-        myObject = {};
-
         let self = this;
-
-        for(myField of myFields){
-          myDatas.push(myField.name+'='+myField.value);
-          myObject[myField.name] = myField.value;
+        
+        array = [];
+        for(property in this.form) {
+          string = property + "=" + this.form[property];
+          array.push(string);
         }
-        console.log(myDatas);
-        console.log(myObject);
-      
-
-        //
-        myDatasString = myDatas.join("&");
-        console.log(myDatasString);
+        arrayString = array.join("&");
+        console.log(arrayString)
 
         //Requête ajax
         xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
           if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText)
-            if(xhr.responseText == "ok") {
-                self.personnesL.push(myObject);
-                self.showForm = false
+            if(xhr.responseText != "pas ok") {
+
+              self.form.id_personnes = xhr.responseText;
+              self.personnesL.push(self.form);
+              self.showForm = false
+            }
+            else {
+              console.log("ERREUR")
             }
           }
         }
 
         xhr.open("POST", "listing.php?ajax", true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send(myDatasString);
+        xhr.send(arrayString);
       }
     }
   }

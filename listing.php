@@ -11,12 +11,17 @@
         $_POST['telephone']
         );
         $connect->query($sql);
-        $last_id = $connect->insert_id;
         echo $connect->error;
-        if ( isset($_GET['ajax']) ) :
-            echo $last_id;
-        exit;
+
+        //Si on utilise ajax
+        if ( isset($_GET['ajax']) AND $connect->errno == 0 ) :
+          echo $connect->insert_id;
+          exit;
+        else :
+          echo "pas ok";
+          exit;
         endif;
+
         header("location:listing.php");
         exit;
     endif;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Satisfaction</title>
+  
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script src="node_modules/vue/dist/vue.js"></script>
+  
+
+</head>
+<body>
+  <main id="customer-list">
+    <h1>Satisfaction des clients :</h1>
+    <section v-for="item in clients">
+      <h2>{{ item.gsx$prénom.$t }} {{ item.gsx$nom.$t }}</h2>
+      <time>{{ item.gsx$horodateur.$t }}</time>
+      <p>{{ item.gsx$satisfaction.$t }}</p>
+      <p>{{ item.gsx$commentaire.$t }}</p>
+    </section>
+  </main>
+  
+  <script src="script/satisfaction.js"></script>
+</body>
+</html>

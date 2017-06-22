@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Personne</title>
+  <link rel="stylesheet" href="style/css/listing.css">
+  <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <div id="listing">
+    <div class="wrap">
+      <transition name="bounce">
+      <main v-if="showSingle && !showForm" id="single">
+          <h1>Fiche</h1>
+          <h2>{{ the_personne.prenom }} {{ the_personne.nom }}</h2>
+          <p class="ddn">{{(the_personne.genre == "F") ? "Née le" : "Né le" }} {{ the_personne.ddn }}</p>
+          <dl>
+            <div>
+              <dt class="info">Email :</dt>
+              <dd class="info-value">{{ the_personne.email }}</dd>
+            </div>
+            <div>
+              <dt class="info">Tél. :</dt>
+              <dd class="info-value">{{ the_personne.telephone }}</dd>
+            </div>
+          </dl>
+      </main>
+      </transition>
+
+      <a href="" v-if="!showForm" v-on:click.prevent="showForm = !showForm" class="form-btn">[+] Ajouter une personne</a>
+
+    <transition name="bounce">
+      <div v-if="showForm">
+
+      <form  v-on:submit.prevent="onSubmit" method="post" action="listing.php" id="insert">
+        <label for="nom">nom : </label>
+        <input v-model="form.nom" type="text" id="nom" name="nom">
+        <br>
+        <label for="prenom">Prénom : </label>
+        <input v-model="form.prenom" type="text" id="prenom" name="prenom">
+        <br>
+        <label for="email">Email : </label>
+        <input v-model="form.email" type="email" id="email" name="email">
+        <br>
+        <label for="telephone">Tél. : </label>
+        <input v-model="form.telephone" type="text" id="telephone" name="telephone">
+        <br>
+        <label for="ddn">Date de naissance : </label>
+        <input v-model="form.ddn" type="date" id="ddn" name="ddn">
+        <br>
+        <p class="label">Genre :</p>
+        <fieldset>
+          <div>
+            <input v-model="form.genre" type="radio" value="F" id="genre_f" name="genre"><label for="genre_f">Féminin</label>
+          </div>
+          <div>
+            <input v-model="form.genre" type="radio" value="M" id="genre_h" name="genre"><label for="genre_h">Masculin</label>
+          </div>
+        </fieldset>
+        <input v-model="form.insert_personne" type="hidden" name="insert_personne">
+        <button>Insérer</button>
+      </form>
+
+      <a href="" v-on:click.prevent="showForm = !showForm" class="form-btn" >&larr; Retour</a>
+
+      </div>
+    </transition>
+
+    </div>
+
+    <aside id="list">
+      <ul>
+        <li v-for="item in personnesL">
+          <a href="#" v-on:click="getSingle" v-bind:data-idp="item.id_personnes">{{ item.nom }} {{ item.prenom }}</a>
+        </li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <script src="script/personne2.js"></script>
+</body>
+</html>

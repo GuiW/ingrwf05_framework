@@ -15,11 +15,17 @@ body {
   align-items : flex-start;
 }
 
-#single {
+.wrap {
   width : 65%;
+}
+
+
+#single {
+  width : 80%;
   background : #ECECEC;
   padding : 20px;
   border-radius : 20px;
+  margin-bottom : 40px;
 
   h1 {
     color : lightgrey;
@@ -56,6 +62,53 @@ body {
       color : #D2D7D3;
     }
   }
+}
+
+.form-btn {
+  text-decoration : none;
+  padding : 10px;
+  background : lightgrey;
+  color : dimgrey;
+  border-radius : 8px;
+}
+
+/* FORM */
+
+form {
+  width : 80%;
+  background : lightgrey;
+  max-width : 400px;
+  padding : 20px;
+  margin: 20px 0 40px 0;
+  border-radius : 10px;
+}
+
+form>input {
+  width : 100%;
+  line-height : 25px;
+  margin-bottom : 15px;
+  border-radius : 5px;
+  border : none;
+}
+
+form>label {
+  display : block;
+}
+fieldset {
+  margin-bottom : 10px;
+  div {
+    display : inline-block;
+    width : calc(50% - 24px;
+  }
+}
+
+button {
+  background : dimgrey;
+  border: none;
+  box-shadow : 0px 4px 0px #444;
+  color : white;
+  font-size : 1rem;
+  padding : 10px 15px;
 }
 
 

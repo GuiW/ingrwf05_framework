@@ -13,10 +13,10 @@
   <div id="listing">
 
     <transition name="bounce">
-    <main v-if="show" id="single">
+    <main v-if="showList" id="single">
         <h1>Fiche</h1>
         <h2>{{ the_personne.prenom }} {{ the_personne.nom }}</h2>
-        <p class="ddn">Né le {{ the_personne.ddn }}</p>
+        <p class="ddn">{{(the_personne.genre == "F") ? "Née le" : "Né le" }} {{ the_personne.ddn }}</p>
         <dl>
           <div>
             <dt class="info">Email :</dt>
@@ -29,6 +29,31 @@
         </dl>
     </main>
     </transition>
+
+    <a href="" v-if="!showForm" v-on:click.prevent="showForm = !showForm">Ajouter une personne</a>
+   <form v-if="showForm" v-on:submit.prevent="onSubmit" method="post" action="listing.php" id="insert">
+       <label for="nom">nom : </label>
+       <input type="text" id="nom" name="nom">
+       <br>
+       <label for="prenom">Prénom : </label>
+       <input type="text" id="prenom" name="prenom">
+       <br>
+       <label for="email">Email : </label>
+       <input type="email" id="email" name="email">
+       <br>
+       <label for="telephone">Tél. : </label>
+       <input type="text" id="telephone" name="telephone">
+       <br>
+       <label for="ddn">Date de naissance : </label>
+       <input type="date" id="ddn" name="ddn">
+       <br>
+       <p class="label">Genre :</p>
+       <input type="radio" value="F" id="genre_f" name="genre"><label for="genre_f">Féminin</label>
+       <input type="radio" value="M" id="genre_h" name="genre"><label for="genre_h">Masculin</label>
+       <br>
+       <input type="hidden" name="insert_personne">
+       <button>Insérer</button>
+   </form>
 
     <aside id="list">
       <ul>
