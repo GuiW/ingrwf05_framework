@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Root</title>
+   <script src="node_modules/vue/dist/vue.js"></script>
+   <script src="node_modules/vue-router/dist/vue-router.js"></script>
+
+   <link rel="stylesheet" href="style/css/routes.css">
+
+</head>
+<body>
+  
+  <div id="app">
+    <h1>Nous sommes vendredi</h1>
+    <div id="links">
+      <router-link to="/foo">Aller sur foo</router-link>
+      <router-link to="/bar">Aller sur bar</router-link>
+      <router-link to="/user/guillaume/publication/2">Aller sur l'utilisateur 2</router-link>
+      <!-- On utilise :to pour lier le lien avec le path qui a le name "produit" et on donne à l'idProduit la valeur 1' -->
+      <router-link :to="{name: 'produit', params: {idProduit:1}}">Aller sur le produit 1</router-link>
+    </div>
+    <transition name="slide-fade">
+      <router-view></router-view>
+    </transition>
+  </div>
+
+  <script src="script/routes.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  font-family: arial;
+  max-width: 800px;
+  margin: 0 auto; }
+
+#app div:last-child {
+  padding: 20px;
+  margin-top: 20px;
+  background: lightgrey;
+  color: dimgrey;
+  font-size: 1.2rem;
+  border-radius: 8px; }
+
+#links a {
+  padding: 10px;
+  border-right: 1px solid lightgrey;
+  text-decoration: none;
+  color: lightgrey; }
+  #links a:last-child {
+    border: none; }
+  #links a:hover {
+    color: dimgrey; }
+
+.router-link-active {
+  color: red; }
+
+.slide-fade-enter-active {
+  transition: all .3s ease; }
+
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1); }
+
+.slide-fade-enter, .slide-fade-leave-to {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+  opacity: 0; }
